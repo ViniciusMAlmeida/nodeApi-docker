@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  database:
+    image: postgres
+    container_name: database_aula
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=aula
+    volumes:
+      - pgdata:/data/postgres
+
+  app:
+    image: 623688/my-node-js:16
+    container_name: node_aula
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/usr/app/
+    links:
+      - database
+    depends_on:
+      - database
+
+volumes:
+  pgdata:
+    driver: local

@@ -11,7 +11,7 @@ const errorHandler = require('./shared/errors/errorHandler');
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Aula 9' });
+  res.json({ message: 'Aula 10' });
 });
 
 app.post('/user/register', UserController.register);
